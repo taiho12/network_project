@@ -19,12 +19,12 @@ Dự án mô phỏng hệ thống đặt vé máy bay sử dụng mô hình **Cl
 
 ## Cấu trúc dự án
 
-client.c
-server.c
-flight.txt
-database.txt
-ticket.txt
-README.md
+- client.c
+- server.c
+- flight.txt
+- database.txt
+- ticket.txt
+- README.md
 
 ---
 
