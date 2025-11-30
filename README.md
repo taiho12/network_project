@@ -1,4 +1,4 @@
-# ✈️ Hệ Thống Đặt Vé Máy Bay Online (TCP Socket)
+# Hệ Thống Đặt Vé Máy Bay Online (TCP Socket)
 
 Dự án mô phỏng hệ thống đặt vé máy bay sử dụng mô hình **Client – Server** viết bằng **ngôn ngữ C** và giao tiếp qua **TCP Socket (Winsock2)**.
 
