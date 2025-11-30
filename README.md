@@ -28,7 +28,7 @@ Dự án mô phỏng hệ thống đặt vé máy bay sử dụng mô hình **Cl
 
 ---
 
-## ▶Hướng dẫn chạy
+## Hướng dẫn chạy
 
 ### 1. Biên dịch server
 gcc server.c -o server -lws2_32
@@ -44,7 +44,7 @@ gcc client.c -o client -lws2_32
 
 ---
 
-## 📌 Ghi chú
+## Ghi chú
 
 - Dự án chạy trên **Windows** (Winsock2).
 - Cơ sở dữ liệu được lưu trong file `.txt`.
@@ -52,7 +52,7 @@ gcc client.c -o client -lws2_32
 
 ---
 
-## 👤 Tác giả
+## Tác giả
 - Tên:  Nguyễn Anh Thứ 
         Nguyễn Hồ Tấn Tài
 - Môn học: Lập Trình Mạng
