@@ -117,18 +117,26 @@ void search_flight(char *from, char *to, char *date, char *result) {
 
 void next_ticket_id(char *tid) {
     FILE *f = fopen("ticket.txt", "r");
+
     if (!f) {
         strcpy(tid, "T001");
         return;
     }
 
-    char last[20], a[50], b[50];
-    while (fscanf(f, "%s %s %s", last, a, b) != EOF) {}
+    char TID[20], user[50], fid[20], pname[50], price[20], status[20], changeinfo[50];
+    char last_id[20] = "T000";
 
-    int num = atoi(last + 1);
-    sprintf(tid, "T%03d", num + 1);
+    while (fscanf(f,
+        "%s %s %s %s %s %s %s",
+        TID, user, fid, pname, price, status, changeinfo) != EOF)
+    {
+        strcpy(last_id, TID);
+    }
 
     fclose(f);
+
+    int num = atoi(last_id + 1);
+    sprintf(tid, "T%03d", num + 1);
 }
 
 int book_ticket(char *username, char *fid, char *date, char *passenger, char *msg) {
@@ -214,6 +222,7 @@ void view_my_tickets(char *username, char *result) {
 }
 
 int cancel_ticket(char *username, char *tid, char *msg) {
+
     FILE *f = fopen("ticket.txt", "r");
     if (!f) {
         strcpy(msg, "ticket file error");
@@ -223,6 +232,7 @@ int cancel_ticket(char *username, char *tid, char *msg) {
     FILE *temp = fopen("ticket_temp.txt", "w");
 
     char TID[20], user[50], fid[20], pname[50], price[20], status[20], changeinfo[50];
+
     int found = 0;
     char flight_to_update[20];
 
@@ -246,15 +256,16 @@ int cancel_ticket(char *username, char *tid, char *msg) {
                 return 0;
             }
 
-            sprintf(msg, "cancel success");
-
             fprintf(temp, "%s %s %s %s %s cancelled user_cancel\n",
                     TID, user, fid, pname, price);
 
+            strcpy(msg, "cancel success");
             found = 1;
-            strcpy(flight_to_update, fid);
 
-        } else {
+            strcpy(flight_to_update, fid);
+        }
+
+        else {
             fprintf(temp, "%s %s %s %s %s %s %s\n",
                     TID, user, fid, pname, price, status, changeinfo);
         }
@@ -318,7 +329,6 @@ int main() {
             int n = recv(connfd, buffer, MAX, 0);
 
             if (n <= 0) break;
-
             buffer[n] = '\0';
 
             char msg[MAX] = "";
@@ -347,7 +357,6 @@ int main() {
                 sscanf(buffer, "search %s %s %s", from, to, date);
 
                 search_flight(from, to, date, msg);
-
                 send(connfd, msg, strlen(msg), 0);
                 continue;
             }
