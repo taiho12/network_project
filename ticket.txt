@@ -1,2 +1,4 @@
 T001 hotai VN202 tai 24.00 active none
 T002 ngocanh VN202 anh 24.00 cancelled user_cancel
+T003 hotai VN302 hotai 14.00 cancelled user_cancel
+T004 khabanh VJ402 banh 10.00 cancelled user_cancel

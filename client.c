@@ -119,7 +119,37 @@ int main() {
                         int m = recv(sockfd, recvbuf, MAX, 0);
                         recvbuf[m] = '\0';
 
-                        printf("\n===== BOOKING RESULT =====\n%s\n", recvbuf);
+                        if (strncmp(recvbuf, "payment_required", 16) == 0) {
+                            printf("\n===== PAYMENT REQUIRED =====\n");
+
+                            int method;
+                            printf("Choose method:\n1. Visa\n2. Napas\nYour choice: ");
+                            scanf("%d", &method);
+
+                            char cardType[10];
+                            if (method == 1) strcpy(cardType, "VISA");
+                            else strcpy(cardType, "NAPAS");
+
+                            char cardnum[30], exp[10], cvv[10];
+
+                            printf("Card number: "); scanf("%s", cardnum);
+                            printf("Expiry (MM/YY): "); scanf("%s", exp);
+                            printf("CVV: "); scanf("%s", cvv);
+
+                            sprintf(message, "payment %s %s %s %s",
+                                    cardType, cardnum, exp, cvv);
+
+                            send(sockfd, message, strlen(message), 0);
+
+                            int k = recv(sockfd, recvbuf, MAX, 0);
+                            recvbuf[k] = '\0';
+
+                            printf("\n===== PAYMENT RESULT =====\n%s\n", recvbuf);
+                        }
+
+                        else {
+                            printf("\n===== BOOKING RESULT =====\n%s\n", recvbuf);
+                        }
                     }
 
                     if (opt == 3) {
