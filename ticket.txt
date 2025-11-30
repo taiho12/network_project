@@ -1,0 +1,2 @@
+T001 hotai VN201 tai 22.00 cancelled user_cancel
+T001 hotai VJ301 TAI 18.00 cancelled user_cancel
